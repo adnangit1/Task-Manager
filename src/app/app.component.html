@@ -2,36 +2,13 @@
 
 <main>
   <ul id="users">
-    <li>
-      <app-user
-        [user]="users[0]"
-         (select)="onselectUser($event)"
-      ></app-user>
-    </li>
-
-    <li>
-      <app-user
-      [user]="users[1]"
-         (select)="onselectUser($event)"
-      ></app-user>
-    </li>
-
-    <li>
-      <app-user
-        [user]="users[2]"
-         (select)="onselectUser($event)"
-      ></app-user>
-    </li>
-
-    <li>
-      <app-user
-        [user]="users[3]"
-         (select)="onselectUser($event)"
-      ></app-user>
-    </li>
-  </ul>
-
-  <app-tasks 
-  [name]="selectedUser.name"/>
-
+    @for (user of users; track user.id) {
+      <li>
+           <app-user
+        [user]="user"
+         (select)="onselectUser($event)" />
+    </li> 
+  }
+</ul>
+  <app-tasks [name]="selectedUser ? selectedUser.name : ''"/>
 </main>
