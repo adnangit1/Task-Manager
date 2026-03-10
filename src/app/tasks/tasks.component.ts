@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from './new-task/new-task.component';
 import { type NewTaskData } from './task/task.model';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent, NewTaskComponent],
+  imports: [TaskComponent, NewTaskComponent, EditTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css'],
 })
@@ -14,6 +15,18 @@ export class TasksComponent {
   @Input({required: true}) userId!: string;
   @Input({required: true}) name!: string;
   isAddingTask = false; 
+
+editingTaskId: string | null = null;
+editingTask: any = null;
+
+onStartEditTask(taskId: string) {
+  this.editingTaskId = taskId;
+
+  this.editingTask = this.selectedUserTasks.find(
+    (task) => task.id === taskId
+  );
+}
+
 
 tasks = [
   {
@@ -68,6 +81,19 @@ onAddTask(taskData: NewTaskData) {
   })
   this.isAddingTask = false
   
+}
+
+onSaveEditedTask(updatedTask: any) {
+
+  const index = this.selectedUserTasks.findIndex(
+    task => task.id === updatedTask.id
+  );
+
+  if (index > -1) {
+    this.selectedUserTasks[index] = updatedTask;
+  }
+
+  this.editingTask = null;
 }
 
 
