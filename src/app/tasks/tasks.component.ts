@@ -3,6 +3,7 @@ import { TaskComponent } from "./task/task.component";
 import { NewTaskComponent } from './new-task/new-task.component';
 import { type NewTaskData } from './task/task.model';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { Task } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -28,7 +29,7 @@ onStartEditTask(taskId: string) {
 }
 
 
-tasks = [
+tasks: Task[] = [
   {
     id: 't1',
     userId: 'u1',
@@ -36,6 +37,7 @@ tasks = [
     summary:
       'Learn all the basic and advanced features of Angular & how to apply them.',
     dueDate: '2025-12-31',
+    priority: 'high' as 'high'
   },
   {
     id: 't2',
@@ -43,6 +45,7 @@ tasks = [
     title: 'Build first prototype',
     summary: 'Build a first prototype of the online shop website',
     dueDate: '2024-05-31',
+    priority: 'medium' as 'medium'
   },
   {
     id: 't3',
@@ -51,8 +54,9 @@ tasks = [
     summary:
       'Prepare and describe an issue template which will help with project management',
     dueDate: '2024-06-15',
-  },
-]
+    priority: 'low' as 'low'
+  }
+];
 
 get selectedUserTasks() {
   return this.tasks.filter((task) => task.userId === this.userId); 
@@ -71,26 +75,24 @@ onCancelAddTask() {
 }
 
 onAddTask(taskData: NewTaskData) {
-
   this.tasks.unshift({
-    id: new Date().getTime().toString(),
+    id: new Date().toString(),
     userId: this.userId,
     title: taskData.title,
     summary: taskData.summary,
-    dueDate: taskData.date
+    dueDate: taskData.date,
+    priority: taskData.priority
+
   })
   this.isAddingTask = false
   
 }
 
 onSaveEditedTask(updatedTask: any) {
-
-  const index = this.selectedUserTasks.findIndex(
-    task => task.id === updatedTask.id
-  );
+  const index = this.tasks.findIndex(task => task.id === updatedTask.id);
 
   if (index > -1) {
-    this.selectedUserTasks[index] = updatedTask;
+    this.tasks[index] = updatedTask;
   }
 
   this.editingTask = null;

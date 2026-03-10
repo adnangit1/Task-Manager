@@ -7,4 +7,9 @@
     <button (click)="onEdit()">Edit</button>
     <button (click)="onCompleteTask()">Complete</button>
   </p>
+
+  <p class="priority" [class]="task.priority">
+  {{ task.priority }}
+</p>
+
 </article>

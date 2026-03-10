@@ -23,5 +23,17 @@
       <button type="button" (click)="onCancel()">Cancel</button>
       <button type="submit">Save</button>
     </p>
+
+    <p>
+        
+  <label for="priority">Priority</label>
+
+  <select id="priority" name="priority" [(ngModel)]="task.priority">
+    <option value="low">Low</option>
+    <option value="medium">Medium</option>
+    <option value="high">High</option>
+  </select>
+</p>
+
   </form>
 </dialog>
