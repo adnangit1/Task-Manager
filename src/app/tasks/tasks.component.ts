@@ -12,6 +12,7 @@ import { Task } from './task/task.model';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css'],
 })
+
 export class TasksComponent {
   @Input({required: true}) userId!: string;
   @Input({required: true}) name!: string;
@@ -95,7 +96,7 @@ onSaveEditedTask(updatedTask: any) {
     this.tasks[index] = updatedTask;
   }
 
-  this.editingTask = false;
+  this.editingTask = null;
 }
 
 

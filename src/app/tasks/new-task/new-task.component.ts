@@ -31,8 +31,6 @@ priority: 'low' | 'medium' | 'high' = 'medium';
 
     })
 
-    this.cancel.emit()
-
   }
 
 }
