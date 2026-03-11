@@ -17,10 +17,9 @@ enteredTitle = '';
 enteredSummary = '';
 enteredDate = '';
 priority: 'low' | 'medium' | 'high' = 'medium';
+
   onCancel() {
     this.cancel.emit();
-    
-
   }
 
   onSubmit() {
@@ -31,6 +30,8 @@ priority: 'low' | 'medium' | 'high' = 'medium';
       priority: this.priority,
 
     })
+
+    this.cancel.emit()
 
   }
 

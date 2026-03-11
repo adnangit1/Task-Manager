@@ -95,7 +95,7 @@ onSaveEditedTask(updatedTask: any) {
     this.tasks[index] = updatedTask;
   }
 
-  this.editingTask = null;
+  this.editingTask = false;
 }
 
 
